@@ -4,20 +4,22 @@ import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 // eslint-disable-next-line
 import { CSSTransition, TransitionGroup } from 'react-transition-group' ;
 import uuid from 'uuid';
+// Get redux item reducer
+import { connect } from 'react-redux';
+import { getItems } from '../actions/itemActions';
+// Component proptypes
+// eslint-disable-next-line
+import PropTypes from 'prop-types';
 
 class Shoppinglist extends Component {
-    state = {
-        items: [
-            { id: uuid(), name: 'Eggs' },
-            { id: uuid(), name: 'Milk' },
-            { id: uuid(), name: 'Steak' },
-            { id: uuid(), name: 'Water' }
-        ]
+
+    componentDidMount() {
+        this.props.getItems();
     }
 
     render(){
         // eslint-disable-next-line
-        const { items } = this.state;
+        const { items } = this.props.item;
 
         return(
             <Container>
@@ -61,4 +63,14 @@ class Shoppinglist extends Component {
         );
     }
 }
-export default Shoppinglist;
+
+Shoppinglist.propTypes = {
+    getItems: PropTypes.func.isRequired,
+    item: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+    item: state.item
+});
+
+export default connect(mapStateToProps, { getItems })(Shoppinglist);
