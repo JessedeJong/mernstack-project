@@ -27,7 +27,6 @@ router.post('/', (req, res) => {
         .catch(err => console.log(err));
 });
 
-
 // @route DELETE api/items
 // @desc Delete item
 // @access Public
