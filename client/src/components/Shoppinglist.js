@@ -23,7 +23,7 @@ class Shoppinglist extends Component {
             <Container>
                 <Button
                     color="dark" 
-                    style={{marginTop: '2rem'}}
+                    style={{margin: '2rem'}}
                     onClick={ () => {
                         const name = prompt('Enter item');
                         if( name ) {
@@ -33,6 +33,30 @@ class Shoppinglist extends Component {
                         }
                     }}   
                 >Add item</Button>
+
+                <ListGroup>
+                    <TransitionGroup className="shopping-list">
+                        { items.map(({ id, name }) => (
+                            <CSSTransition key={id} timeout={500} classNames="fade">
+                                <ListGroupItem>
+                                    <Button
+                                        className="remove-btn"
+                                        color="danger"
+                                        size="sm"
+                                        onClick={ () => {
+                                            this.setState( state => ({
+                                                items: state.items.filter(item => item.id !== id)
+                                            }));
+                                        }}
+                                    >
+                                        &times;
+                                    </Button>
+                                    { name }
+                                </ListGroupItem>
+                            </CSSTransition>
+                        ))}
+                    </TransitionGroup>
+                </ListGroup>
             </Container>
         );
     }
