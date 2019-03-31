@@ -7,6 +7,10 @@ import './css/import.js';
 import Navbar from './components/Navbar';
 import Shoppinglist from './components/Shoppinglist.js';
 
+// Redux
+import { Provider } from 'react-redux';
+import store from './store';
+
 class App extends Component {
   render() {
     return (
