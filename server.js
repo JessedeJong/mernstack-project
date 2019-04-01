@@ -15,11 +15,11 @@ const db = require('./config/keys').mongoURI;
 //Connect to database
 mongoose
     .connect(db, { useNewUrlParser: true })
-    .then(() => console.log('Database connection established'))
-    .catch(err => console.log(err));
+    .then(() => console.log('[database] connection established'))
+    .catch(err => console.log(err)); // Catch the error 
 
 //Use routes
 app.use('/api/items', items);
 
 const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`Server started on port ${port}`));
+app.listen(port, () => console.log(`[server] running on port ${port}`));
