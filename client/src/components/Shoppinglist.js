@@ -60,5 +60,4 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, 
-    { getItems, deleteItem, addItem })
-    ( Shoppinglist );
+    { getItems, deleteItem, addItem })( Shoppinglist );
