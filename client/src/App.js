@@ -3,9 +3,13 @@ import React, { Component } from 'react';
 // File in which all css files are imported
 import './css/import.js'; 
 
+// Import Reactstrap
+import { Container } from 'reactstrap';
+
 // Import components
 import Navbar from './components/Navbar';
 import Shoppinglist from './components/Shoppinglist.js';
+import ItemModal from './components/ItemModal';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -17,7 +21,10 @@ class App extends Component {
       <Provider store={store}>
         <div className="App">
           <Navbar />
-          <Shoppinglist />
+          <Container>
+            <ItemModal />
+            <Shoppinglist />
+          </Container>
         </div>
       </Provider>
     );
