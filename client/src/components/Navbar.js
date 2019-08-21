@@ -26,9 +26,9 @@ class Navigation extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
+              {/* <NavItem>
                 <LoginModal />
-              </NavItem>
+              </NavItem> */}
               <NavItem>
                 <RegisterModal /> 
               </NavItem>

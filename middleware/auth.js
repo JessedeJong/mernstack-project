@@ -1,3 +1,4 @@
+// Middleware for checking JWT
 const config = require('config')
 const jwt = require('jsonwebtoken')
 
