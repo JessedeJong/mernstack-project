@@ -5,6 +5,7 @@ const path = require('path')
 const morgan = require('morgan')
 const rfs = require('rotating-file-stream')
 const uuid = require('node-uuid')
+const config = require('config')
 
 // Assign new app
 const app = express()
@@ -37,7 +38,7 @@ app.use(morgan(':method :date :id :url :response-time :remote-addr :status' , {
 app.use(express.json())
 
 // Configure database connection
-const db = require('./config/keys').mongoURI;
+const db = config.get('mongoURI')
 
 // Connect to database
 mongoose
@@ -51,6 +52,7 @@ mongoose
 // Add api routes
 app.use('/api/items', require('./routes/api/items'))
 app.use('/api/users', require('./routes/api/users'))
+app.use('/api/auth', require('./routes/api/auth'))
 
 // Serve static files when in production
 if (process.env.NODE_ENV === 'production') {
