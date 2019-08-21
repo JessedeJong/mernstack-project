@@ -31,7 +31,7 @@ function assignTokenId (req, res, next) {
 app.use(assignTokenId)
 
 // Create the log entry layout
-app.use(morgan(':date :id :method :url :response-time :remote-addr :status' , {
+app.use(morgan(':method :date :id :url :response-time :remote-addr :status' , {
     stream: logStream
 }))
 
