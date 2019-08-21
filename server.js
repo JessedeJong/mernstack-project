@@ -1,14 +1,12 @@
 // Packages
 const express = require('express')
 const mongoose = require('mongoose')
-const bodyParser = require('body-parser')
 const path = require('path')
 const morgan = require('morgan')
 const rfs = require('rotating-file-stream')
 const uuid = require('node-uuid')
 
-// Get item api
-const items = require('./routes/api/items')
+// Assign new app
 const app = express()
 
 // Request logging
@@ -35,20 +33,24 @@ app.use(morgan(':method :date :id :url :response-time :remote-addr :status' , {
     stream: logStream
 }))
 
-// Apply bodyparser middleware
-app.use(bodyParser.json())
+// Apply express middleware
+app.use(express.json())
 
 // Configure database connection
 const db = require('./config/keys').mongoURI;
 
 // Connect to database
 mongoose
-    .connect(db, { useNewUrlParser: true })
+    .connect(db, { 
+        useNewUrlParser: true,
+        useCreateIndex: true
+    })
     .then(() => console.log('[database] connection established'))
     .catch(err => console.log(err)); // Catch the error 
 
-// Add item routes
-app.use('/api/items', items)
+// Add api routes
+app.use('/api/items', require('./routes/api/items'))
+app.use('/api/users', require('./routes/api/users'))
 
 // Serve static files when in production
 if (process.env.NODE_ENV === 'production') {
