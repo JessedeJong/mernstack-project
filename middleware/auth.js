@@ -5,11 +5,7 @@ function auth(req, res, next) {
     const token = req.header('x-auth-token');
 
     // Check if token available
-    if(!token) {
-        res.status(401).json({
-            msg: "Token not present, access denied"
-        });
-    }
+    if(!token) return res.status(401).json({ msg: "Token not present, access denied" });
 
     try {
         // Verify token

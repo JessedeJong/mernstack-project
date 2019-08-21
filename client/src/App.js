@@ -14,8 +14,13 @@ import ItemModal from './components/ItemModal';
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
+import { getUser } from './actions/authActions';
 
 class App extends Component {
+  componentDidMount() {
+    store.dispatch(getUser());
+  }
+
   render() {
     return (
       <Provider store={store}>
