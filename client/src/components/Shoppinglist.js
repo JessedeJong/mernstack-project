@@ -21,6 +21,7 @@ class Shoppinglist extends Component {
     }
 
     render(){
+        // For every item in the array, create a prop
         // eslint-disable-next-line
         const { items } = this.props.item;
 
